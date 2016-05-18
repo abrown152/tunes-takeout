@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'sessions#index'
 
+
+# Do I need to add anything else to the below OmniAuth routes??
+  get '/auth/:provider'
+  get '/auth/:provider/callback'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

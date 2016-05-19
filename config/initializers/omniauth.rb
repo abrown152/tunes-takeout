@@ -1,5 +1,3 @@
-ENV["SPOTIFY_CLIENT_ID"]
-ENV["SPOTIFY_SECRET_ID"]
-
-ENV["YELP_CLIENT_ID"]
-ENV["YELP_SECRET_ID"]
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :spotify, ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_SECRET_ID"]
+end

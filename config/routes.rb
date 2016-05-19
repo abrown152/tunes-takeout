@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
 
   get '/auth/spotify', :to => 'sessions#create'
-  get '/auth/spotify/callback', :to => 'sessions#index'
+  get '/auth/spotify/callback', :to => 'sessions#create'
   get '/logout', :to => 'sessions#destroy'
   resources :food, :music
   # Confirm these are the correct resources. What is this line even doing???????

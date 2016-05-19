@@ -1,3 +1,10 @@
-<h3>index view</h3>
-
-<%= link_to "Log In With Spotify", "/auth/spotify" %>
+<% if current_user %>
+  <nav>
+    <h3>Hi, <%= current_user.name %>!</h3>
+    <%= link_to "Log Out", "/logout" %>
+  </nav>
+<% else %>
+  <nav>
+  <%= link_to "Log In", "/auth/spotify" %>
+  </nav>
+<% end %>

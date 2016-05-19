@@ -1,10 +1,5 @@
 class SessionsController < ApplicationController
 
-  # def create
-  #   auth_hash = request.env['omniauth.auth']
-  #   raise
-  # end
-
   def create
     auth_hash = request.env['omniauth.auth']
     if auth_hash["uid"]
@@ -18,7 +13,6 @@ class SessionsController < ApplicationController
     else
       redirect_to root_path, notice: "Failed to authenticate"
     end
-    raise
   end
 
   def destroy

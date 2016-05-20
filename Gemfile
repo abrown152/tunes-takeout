@@ -27,7 +27,7 @@ gem 'rspotify'
 gem 'yelp', require: 'yelp'
 gem 'omniauth'
 gem 'omniauth-spotify'
-
+gem 'httparty'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

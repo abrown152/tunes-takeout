@@ -1,3 +1,5 @@
+require_relative "../../lib/TunesTakeoutWrapper"
+
 class SuggestionsController < ApplicationController
 
   def index
@@ -6,4 +8,5 @@ class SuggestionsController < ApplicationController
   def show
     @results = TunesTakeoutWrapper.search(params[:keyword])
   end
+  
 end

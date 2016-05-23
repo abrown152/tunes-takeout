@@ -4,4 +4,9 @@
   <%= submit_tag("Search") %>
 <% end %>
 
-<%= @data %> #returns nothing
+<% @results.each do |pair| %>
+<div>
+  <%= pair %>
+</div>
+<br>
+<% end %>

@@ -5,10 +5,6 @@ class SuggestionsController < ApplicationController
   #   @results = TunesTakeoutWrapper.search(params[:keyword])
   # end
 
-  # def index
-  #   @results = get_suggestions
-  # end
-
   def index
     results = TunesTakeoutWrapper.top_twenty
     @results = results["suggestions"]
@@ -23,7 +19,7 @@ class SuggestionsController < ApplicationController
     # end
   end
 
-  # def get_music(suggestion)
+  # def get_music(suggestion, music_type)
   #   case suggestion["music_type"]
   #   when "artist"
   #     RSpotify::Artist.find(suggestion["music_id"])

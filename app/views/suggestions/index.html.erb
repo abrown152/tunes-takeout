@@ -6,7 +6,7 @@
 
 <% @results.each do |pair_id| %>
 <div>
-  <%= pair_id %>
+  <%= TunesTakeoutWrapper.suggestion_info(pair_id)["suggestion"] %>
 </div>
 <br>
 <% end %>

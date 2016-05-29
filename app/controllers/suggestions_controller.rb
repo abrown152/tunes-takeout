@@ -11,15 +11,16 @@ class SuggestionsController < ApplicationController
 
   def get_suggestions
     results = TunesTakeoutWrapper.top_twenty
-    results["suggestions"].map do |suggestion_id|
-      suggestion = TunesTakeoutWrapper.suggestion_info(suggestion_id)["suggestion"]
-      logger.info suggestion
-
-      {
-        music: get_music(suggestion),
-        food: get_food(suggestion),
-      }
-    end
+    @results = results["suggestions"]
+    # results["suggestions"].map do |suggestion_id|
+    #   suggestion = TunesTakeoutWrapper.suggestion_info(suggestion_id)["suggestion"]
+    #   logger.info suggestion
+    #
+    #   {
+    #     music: get_music(suggestion),
+    #     # food: get_food(suggestion),
+    #   }
+    # end
   end
 
   def get_music(suggestion)
@@ -33,8 +34,8 @@ class SuggestionsController < ApplicationController
     end
   end
 
-  def get_food(suggestion)
-    "food"
-  end
+  # def get_food(suggestion)
+  #   "food"
+  # end
 
 end

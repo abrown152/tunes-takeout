@@ -10,13 +10,14 @@
   <% if music["music_type"] == "album" %>
     <%= RSpotify::Album.find(music["music_id"]).name %>
 
+
   <% elsif music["music_type"] == "artist" %>
-  <%= RSpotify::Artist.find(music["music_id"]).name %>
-  <%= RSpotify::Artist.find(music["music_id"]).followers %>
+  <%= RSpotify::Artist.find(music["music_id"]).name %>,
+  <%= RSpotify::Artist.find(music["music_id"]).followers["total"] %>
 
 
   <% elsif music["music_type"] == "track" %>
-  <%= RSpotify::Track.find(music["music_id"]).name %>
+  <%= RSpotify::Track.find(music["music_id"]).name %>, 
   <%= RSpotify::Track.find(music["music_id"]).preview_url %>
 
   <% else %>

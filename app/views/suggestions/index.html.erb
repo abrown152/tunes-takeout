@@ -4,30 +4,36 @@
   <%= submit_tag("Search") %>
 <% end %>
 
+<%= @results %>
+
 <% @results.each do |pair_id| %>
 <p>
   <% music = TunesTakeoutWrapper.suggestion_info(pair_id)["suggestion"] %>
   <% if music["music_type"] == "album" %>
-    <%= RSpotify::Album.find(music["music_id"]).name %>,
-    <%= RSpotify::Album.find(music["music_id"]).uri %>,
-    <%= RSpotify::Album.find(music["music_id"]).images[0]["url"] %>,
-    <%= RSpotify::Album.find(music["music_id"]).album_type %>,
-    <%= RSpotify::Album.find(music["music_id"]).external_urls['spotify'] %>
+    <%= RSpotify::Album.find(music["music_id"]).name %><br>
+    <%= RSpotify::Album.find(music["music_id"]).uri %><br>
+    <%= RSpotify::Album.find(music["music_id"]).images[0]["url"] %><br>
+    <%= RSpotify::Album.find(music["music_id"]).album_type %><br>
+    <%= RSpotify::Album.find(music["music_id"]).external_urls['spotify'] %> <br><br><br>
 
 
 
   <% elsif music["music_type"] == "artist" %>
-  <%= RSpotify::Artist.find(music["music_id"]).name %>,
-  <%= RSpotify::Artist.find(music["music_id"]).uri %>,
-  <%= RSpotify::Artist.find(music["music_id"]).images[0] %>,
-  <%= RSpotify::Artist.find(music["music_id"]).type %>,
+  <%= RSpotify::Artist.find(music["music_id"]).name %><br>
+  <%= RSpotify::Artist.find(music["music_id"]).uri %><br>
+  <%= RSpotify::Artist.find(music["music_id"]).images[0] %><br>
+  <%= RSpotify::Artist.find(music["music_id"]).type %><br>
   <%= RSpotify::Artist.find(music["music_id"]).external_urls['spotify'] %>
+  <br><br><br>
 
 
 
   <% elsif music["music_type"] == "track" %>
-  <%= RSpotify::Track.find(music["music_id"]).name %>,
-  <%= RSpotify::Track.find(music["music_id"]).preview_url %>
+  <%= RSpotify::Track.find(music["music_id"]).name %><br>
+  <%= RSpotify::Track.find(music["music_id"]).uri %><br>
+  <%= RSpotify::Track.find(music["music_id"]).type %><br>
+  <%= RSpotify::Track.find(music["music_id"]).external_urls['spotify'] %>
+  <br><br><br>
 
   <% else %>
     <%= "Invalid music type." %>

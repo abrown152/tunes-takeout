@@ -8,7 +8,12 @@
 <p>
   <% music = TunesTakeoutWrapper.suggestion_info(pair_id)["suggestion"] %>
   <% if music["music_type"] == "album" %>
-    <%= RSpotify::Album.find(music["music_id"]).name %>
+    <%= RSpotify::Album.find(music["music_id"]).name %>,
+    <%= RSpotify::Album.find(music["music_id"]).uri %>,
+    <%= RSpotify::Album.find(music["music_id"]).images[0]["url"] %>,
+    <%= RSpotify::Album.find(music["music_id"]).album_type %>,
+    <%= RSpotify::Album.find(music["music_id"]).external_urls['spotify'] %>
+
 
 
   <% elsif music["music_type"] == "artist" %>
@@ -17,7 +22,7 @@
 
 
   <% elsif music["music_type"] == "track" %>
-  <%= RSpotify::Track.find(music["music_id"]).name %>, 
+  <%= RSpotify::Track.find(music["music_id"]).name %>,
   <%= RSpotify::Track.find(music["music_id"]).preview_url %>
 
   <% else %>

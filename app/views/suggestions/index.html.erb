@@ -18,7 +18,11 @@
 
   <% elsif music["music_type"] == "artist" %>
   <%= RSpotify::Artist.find(music["music_id"]).name %>,
-  <%= RSpotify::Artist.find(music["music_id"]).followers["total"] %>
+  <%= RSpotify::Artist.find(music["music_id"]).uri %>,
+  <%= RSpotify::Artist.find(music["music_id"]).images[0] %>,
+  <%= RSpotify::Artist.find(music["music_id"]).type %>,
+  <%= RSpotify::Artist.find(music["music_id"]).external_urls['spotify'] %>
+
 
 
   <% elsif music["music_type"] == "track" %>

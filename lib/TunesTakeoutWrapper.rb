@@ -17,6 +17,7 @@ class TunesTakeoutWrapper
 
   def self.favorites
     HTTParty.get(BASE_URL + "/v1/users/:#{RSpotify::User.find(current_user.name).id}/favorites").parsed_response
+    # Returns a list of pair IDs from Charles' API
   end
 
 end

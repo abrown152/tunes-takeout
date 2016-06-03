@@ -33,6 +33,8 @@ class User < ActiveRecord::Base
     @favorites.each do |pair|
       if pair["id"] == id
         # remove the pair ID from the array here
+      end
+    end
   end
 
 end

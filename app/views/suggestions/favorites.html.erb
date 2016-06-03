@@ -1,3 +1,7 @@
-<%= @favorites %>
-
-Hello
+<% if @favorites %>
+  <% @favorites.each do |fave| %>
+    <%= fave %>
+  <% end %>
+<% else %>
+  <p>You have no favorites right now!</p>
+<% end %>

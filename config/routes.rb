@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   post '/v1/suggestions/search', :to => 'suggestions#search', as: 'search'
 
   get '/favorites', :to => 'suggestions#favorites', as: 'favorites'
+
+  get '/show/:id', :to => 'suggestions#show', as: 'show'
 end

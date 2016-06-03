@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   post '/top_twenty/show', :to => 'suggestions#show', as: 'top_twenty_results'
 
   post '/v1/suggestions/search', :to => 'suggestions#search', as: 'search'
+
+  get '/favorites', :to => 'suggestions#favorites', as: 'favorites'
 end

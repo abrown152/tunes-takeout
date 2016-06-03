@@ -12,6 +12,11 @@ class TunesTakeoutWrapper
   end
 
   def self.suggestion_info(id)
-    HTTParty.get(BASE_URL + "/v1/suggestions/" + id["id"]).parsed_response
+    HTTParty.get(BASE_URL + "/v1/suggestions/" + id).parsed_response
   end
+
+  def self.favorites
+    HTTParty.get(BASE_URL + "/v1/users/:#{RSpotify::User.find(current_user.name).id}/favorites").parsed_response
+  end
+
 end

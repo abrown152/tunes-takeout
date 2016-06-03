@@ -3,32 +3,36 @@
 <% @results.each do |pair_id| %>
   <p>
     <% music = TunesTakeoutWrapper.suggestion_info(pair_id)["suggestion"] %>
-    <%= Yelp.client.business(music["food_id"]).business.name %>
-    <%= Yelp.client.business(music["food_id"]).business.id %>
-    <%= Yelp.client.business(music["food_id"]).business.image_url %>
-    <%= Yelp.client.business(music["food_id"]).business.rating %>
-    <%= Yelp.client.business(music["food_id"]).business.url %>
+    <% info = Yelp.client.business(music["food_id"]).business %>
+    <%= info.name %>
+    <%= info.id %>
+    <%= info.image_url %>
+    <%= info.rating %>
+    <%= info.url %>
 
     <% if music["music_type"] == "album" %>
-      <%= RSpotify::Album.find(music["music_id"]).name %><br>
-      <%= RSpotify::Album.find(music["music_id"]).uri %><br>
-      <%= RSpotify::Album.find(music["music_id"]).images[0]["url"] %><br>
-      <%= RSpotify::Album.find(music["music_id"]).album_type %><br>
-      <%= RSpotify::Album.find(music["music_id"]).external_urls['spotify'] %>
+      <% album = RSpotify::Album.find(music["music_id"]) %>
+      <%= album.name %><br>
+      <%= album.uri %><br>
+      <%= album.images[0]["url"] %><br>
+      <%= album.album_type %><br>
+      <%= album.external_urls['spotify'] %>
       <br><br><br>
 
     <% elsif music["music_type"] == "artist" %>
-    <%= RSpotify::Artist.find(music["music_id"]).name %><br>
-    <%= RSpotify::Artist.find(music["music_id"]).uri %><br>
-    <%= RSpotify::Artist.find(music["music_id"]).images[0] %><br>
-    <%= RSpotify::Artist.find(music["music_id"]).type %><br>
-    <%= RSpotify::Artist.find(music["music_id"]).external_urls['spotify'] %><br><br><br>
+      <% artist = RSpotify::Artist.find(music["music_id"]) %>
+      <%= artist.name %><br>
+      <%= artist.uri %><br>
+      <%= artist.images[0] %><br>
+      <%= artist.type %><br>
+      <%= artist.external_urls['spotify'] %><br><br><br>
 
     <% elsif music["music_type"] == "track" %>
-    <%= RSpotify::Track.find(music["music_id"]).name %><br>
-    <%= RSpotify::Track.find(music["music_id"]).uri %><br>
-    <%= RSpotify::Track.find(music["music_id"]).type %><br>
-    <%= RSpotify::Track.find(music["music_id"]).external_urls['spotify'] %><br><br><br>
+      <% track = RSpotify::Track.find(music["music_id"]) %>
+      <%= track.name %><br>
+      <%= track.uri %><br>
+      <%= track.type %><br>
+      <%= track.external_urls['spotify'] %><br><br><br>
 
     <% else %>
       <%= "Invalid music type." %>

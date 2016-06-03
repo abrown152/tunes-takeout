@@ -9,6 +9,24 @@
 
 <h1><%= link_to "tunes&takeout", root_path %></h1>
 
+<% if current_user %>
+  <nav>
+    <h3>Hi, <%= current_user.name %>!</h3>
+    <%= link_to "Log Out", "/logout" %>
+  </nav>
+  <%= form_tag top_twenty_results_path do %>
+    <%= label_tag(:q, "Search for:") %>
+    <%= text_field_tag(:q) %>
+    <%= submit_tag("Search") %>
+  <% end %>
+<% else %>
+  <nav>
+  <%= link_to "Log In", "/auth/spotify" %>
+  <%= link_to "Top Pairings", "/top_twenty" %>
+  </nav>
+
+<% end %>
+
 <body>
 
 <%= yield %>

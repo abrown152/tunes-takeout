@@ -1,33 +1,34 @@
-<%= form_tag top_twenty_results_path do %>
-  <%= label_tag(:q, "Search for:") %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag("Search") %>
-<% end %>
+<h1>Top Twenty Suggested Pairings</h1>
 
 <% @results.each do |pair_id| %>
   <p>
     <% music = TunesTakeoutWrapper.suggestion_info(pair_id)["suggestion"] %>
+    <%= Yelp.client.business(music["food_id"]).business.name %>
+    <%= Yelp.client.business(music["food_id"]).business.id %>
+    <%= Yelp.client.business(music["food_id"]).business.image_url %>
+    <%= Yelp.client.business(music["food_id"]).business.rating %>
+    <%= Yelp.client.business(music["food_id"]).business.url %>
+
     <% if music["music_type"] == "album" %>
       <%= RSpotify::Album.find(music["music_id"]).name %><br>
       <%= RSpotify::Album.find(music["music_id"]).uri %><br>
       <%= RSpotify::Album.find(music["music_id"]).images[0]["url"] %><br>
       <%= RSpotify::Album.find(music["music_id"]).album_type %><br>
-      <%= RSpotify::Album.find(music["music_id"]).external_urls['spotify'] %> <br><br><br>
+      <%= RSpotify::Album.find(music["music_id"]).external_urls['spotify'] %>
+      <br><br><br>
 
     <% elsif music["music_type"] == "artist" %>
     <%= RSpotify::Artist.find(music["music_id"]).name %><br>
     <%= RSpotify::Artist.find(music["music_id"]).uri %><br>
     <%= RSpotify::Artist.find(music["music_id"]).images[0] %><br>
     <%= RSpotify::Artist.find(music["music_id"]).type %><br>
-    <%= RSpotify::Artist.find(music["music_id"]).external_urls['spotify'] %>
-    <br><br><br>
+    <%= RSpotify::Artist.find(music["music_id"]).external_urls['spotify'] %><br><br><br>
 
     <% elsif music["music_type"] == "track" %>
     <%= RSpotify::Track.find(music["music_id"]).name %><br>
     <%= RSpotify::Track.find(music["music_id"]).uri %><br>
     <%= RSpotify::Track.find(music["music_id"]).type %><br>
-    <%= RSpotify::Track.find(music["music_id"]).external_urls['spotify'] %>
-    <br><br><br>
+    <%= RSpotify::Track.find(music["music_id"]).external_urls['spotify'] %><br><br><br>
 
     <% else %>
       <%= "Invalid music type." %>

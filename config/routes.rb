@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   get '/auth/spotify/callback', :to => 'sessions#create'
   get '/logout', :to => 'sessions#destroy'
   resources :food, :music
+  # Confirm these are the correct resources. What is this line even doing???????
+
   get '/top_twenty', :to => 'suggestions#index'
   post '/top_twenty/show', :to => 'suggestions#show', as: 'top_twenty_results'
-  # Confirm these are the correct resources. What is this line even doing???????
+
+  post '/v1/suggestions/search', :to => 'suggestions#search', as: 'search'
 end

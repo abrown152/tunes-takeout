@@ -12,7 +12,6 @@ class TunesTakeoutWrapper
   end
 
   def self.suggestion_info(id)
-    HTTParty.get(BASE_URL + "/v1/suggestions/" + id).parsed_response
-    # SpotifyWrapper.top_twenty
+    HTTParty.get(BASE_URL + "/v1/suggestions/" + id["id"]).parsed_response
   end
 end

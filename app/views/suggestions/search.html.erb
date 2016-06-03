@@ -1,0 +1,40 @@
+<h1>Results</h1>
+
+<% @search_results.each do |pair| %>
+  <p>
+    <% business = Yelp.client.business(pair["food_id"]).business %>
+    <%= business.name %>
+    <%= business.id %>
+    <%= business.image_url %>
+    <%= business.rating %>
+    <%= business.url %>
+
+    <% if pair["music_type"] == "album" %>
+      <% album = RSpotify::Album.find(pair["music_id"]) %>
+      <%= album.name %><br>
+      <%= album.uri %><br>
+      <%= album.images[0]["url"] %><br>
+      <%= album.album_type %><br>
+      <%= album.external_urls['spotify'] %>
+      <br><br><br>
+
+    <% elsif pair["music_type"] == "artist" %>
+    <% artist = RSpotify::Artist.find(pair["music_id"]) %>
+    <%= artist.name %><br>
+    <%= artist.uri %><br>
+    <%= artist.images[0] %><br>
+    <%= artist.type %><br>
+    <%= artist.external_urls['spotify'] %><br><br><br>
+
+    <% elsif pair["music_type"] == "track" %>
+    <% track = RSpotify::Track.find(pair["music_id"]) %>
+    <%= track.name %><br>
+    <%= track.uri %><br>
+    <%= track.type %><br>
+    <%= track.external_urls['spotify'] %><br><br><br>
+
+    <% else %>
+      <%= "Invalid music type." %>
+    <% end %>
+  </p>
+<% end %>

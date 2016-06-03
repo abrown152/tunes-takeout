@@ -14,14 +14,11 @@
 
 <% if current_user %>
   <nav>
-    <%= RSpotify::User.find(current_user.name).id %>
-    <%= RSpotify::User.find(current_user.name).external_urls["spotify"] %>
-    <%= link_to href: 'https://www.spotify.com/us/' do %>
-      <%= image_tag 'https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/512/guest.png', width: 60, height: 60, alt: 'Spotify Icon'%>
-    <% end %>
+    <%= RSpotify::User.find(current_user.name).id %><br>
+    <%= RSpotify::User.find(current_user.name).external_urls["spotify"] %><br>
     <%= link_to "Log Out", "/logout" %>
   </nav>
-  <%= form_tag top_twenty_results_path do %>
+  <%= form_tag search_path do %>
     <%= label_tag(:q, "Search for:") %>
     <%= text_field_tag(:q) %>
     <%= submit_tag("Search") %>

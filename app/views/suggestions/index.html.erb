@@ -2,8 +2,6 @@
 
 <% @results.each do |pair_id| %>
   <p>
-    <%= hidden_field_tag :favorite, TunesTakeoutWrapper.favorite(pair_id) %>
-    
     <% music = TunesTakeoutWrapper.suggestion_info(pair_id)["suggestion"] %>
     <% info = Yelp.client.business(music["food_id"]).business %>
     <%= info.name %>
@@ -38,6 +36,12 @@
 
     <% else %>
       <%= "Invalid music type." %>
+    <% end %>
+
+    <%= hidden_field_tag :favorite, TunesTakeoutWrapper.favorite(pair_id) %>
+    <%= form_tag favorite_path do %>
+      <%= hidden_field_tag "pair_id", pair_id %>
+      <%= submit_tag "Favorite" %>
     <% end %>
   </p>
 <% end %>

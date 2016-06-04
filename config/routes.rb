@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   get '/favorites', :to => 'suggestions#favorites', as: 'favorites'
 
   get '/show/:id', :to => 'suggestions#show', as: 'show'
+
+  post '/favorited', :to => 'suggestions#favorite', as: 'favorite'
 end

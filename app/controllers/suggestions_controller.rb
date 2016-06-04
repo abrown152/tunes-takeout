@@ -10,18 +10,19 @@ class SuggestionsController < ApplicationController
   end
 
   def show
-    # shows individual pairing info
+
   end
 
   def favorites
     @favorites = TunesTakeoutWrapper.favorites
+    # shows all suggestions favorited by the signed-in User
   end
 
   def unfavorite
   end
 
-  def favorites
-    # shows all suggestions favorited by the signed-in User
+  def favorite
+    TunesTakeoutWrapper.favorite(params[:id])
   end
 
 end

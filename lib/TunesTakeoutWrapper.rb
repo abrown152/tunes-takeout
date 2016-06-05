@@ -23,7 +23,6 @@ class TunesTakeoutWrapper
   def self.favorite(pair_id)
     HTTParty.post(BASE_URL + "/v1/users/:#{User.last.uid}/favorites", body: {"suggestions": pair_id}.to_json)
     # Currently not saving the favorite in Charles' API, returns an empty array
-    raise
     # work on this
   end
 end
